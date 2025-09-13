@@ -1,0 +1,9 @@
+ {% extends 'main/layout.html' %}
+{% block main %}
+    <h1>Add a new project</h1>
+    <form action= "{% url 'addpage' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button>post</button>
+    </form>
+{% endblock main %}

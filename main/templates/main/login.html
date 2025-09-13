@@ -1,0 +1,62 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block main %}
+<main style="padding:60px 20px; display:flex; justify-content:center; align-items:center; min-height:70vh;">
+
+  <div class="login-panel" style="width:100%; max-width:400px; background:#fff; padding:40px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
+    
+    <h2 style="text-align:center; color:#222; margin-bottom:30px;">Login to Your Account</h2>
+
+    {% if form.errors %}
+      <div style="color:#ff4d4f; margin-bottom:20px; font-size:0.95rem;">
+        Please correct the errors below.
+      </div>
+    {% endif %}
+
+    <form method="post" style="display:flex; flex-direction:column; gap:15px;">
+      {% csrf_token %}
+      
+      <input type="text" name="username" placeholder="Username" value="{{ form.data.username|default_if_none:'' }}" required>
+
+      {% if form.username.errors %}
+        <span style="color:#ff4d4f; font-size:0.85rem;">{{ form.username.errors.0 }}</span>
+      {% endif %}
+
+      <input type="password" name="password" placeholder="Password" required>
+      {% if form.password.errors %}
+        <span style="color:#ff4d4f; font-size:0.85rem;">{{ form.password.errors.0 }}</span>
+      {% endif %}
+
+      <button type="submit" style="padding:12px; border:none; border-radius:8px; background:#007bff; color:#fff; font-weight:600; cursor:pointer; transition:0.3s;">Login</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px; font-size:0.95rem;">
+      Don't have an account? <a href="{% url 'usersignup' %}" style="color:#007bff;">Sign up</a>
+    </p>
+  </div>
+
+</main>
+
+<style>
+  input {
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:1rem;
+    outline:none;
+    transition:0.3s;
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  input:focus {
+    border-color:#007bff;
+    box-shadow:0 0 5px rgba(0,123,255,0.3);
+  }
+
+  button:hover {
+    background:#0056b3;
+  }
+</style>
+{% endblock main %}

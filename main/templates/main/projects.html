@@ -1,0 +1,146 @@
+{% extends 'main/layout.html' %}
+
+{% block main %}
+  <style>
+    .projects-section {
+      padding: 80px 50px;
+      background: #f5f5f5;
+    }
+
+    .projects-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .projects-header h2 {
+      font-size: 36px;
+      font-weight: bold;
+      display: inline-block;
+      position: relative;
+    }
+
+    .projects-header .underline {
+      width: 120px;
+      height: 6px;
+      background: #FFD600;
+      margin: 12px auto 0;
+      border-radius: 3px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .project-box {
+      background: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+
+    .project-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-text {
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-text h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .project-text p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-link {
+      display: inline-block;
+      background: #FFD600;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      width: fit-content;
+    }
+
+    .project-link:hover {
+      opacity: 0.85;
+    }
+
+    .delete-form {
+      margin-top: 10px;
+    }
+
+    .delete-form button {
+      background: #e53935;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .delete-form button:hover {
+      opacity: 0.85;
+    }
+  </style>
+
+  <section class="projects-section">
+    <div class="projects-header">
+      <h2>PROJECTS</h2>
+      <div class="underline"></div>
+    </div>
+
+    <div class="project-grid">
+      {% for project in allMyProjects %}
+        <div class="project-box">
+          <div class="project-image">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+          </div>
+          <div class="project-text">
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.description }}</p>
+            <a href="{{ project.link }}" target="_blank" class="project-link">View Live Site</a>
+
+            {% if user.is_superuser %}
+              <form action="{% url 'deleteproject' pk=project.pk %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button>Delete</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock main %}

@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My Website{% endblock %}</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}" />
+
+    <!-- Font Awesome Free CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div>Logo</div>
+        <ul class="nav_link">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'aboutpage' %}">About</a></li>
+            <li><a href="{% url 'contactpage' %}">Contact</a></li>
+            <li><a href="{% url 'allprojects' %}">Projects</a></li>
+
+            {% if user.is_superuser %}
+                <li><a href="{% url 'addpage' %}">Add</a></li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                <form action="{% url 'userlogout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <li><a href="{% url 'userlogin' %}">Login</a></li>
+                <li><a href="{% url 'usersignup' %}">Sign up</a></li>
+            {% endif %}
+        </ul>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>All rights reserved &copy; 2025 | Okoye Bethel</p>
+            <div class="social-icons">
+                <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:okoyebethel@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

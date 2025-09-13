@@ -1,0 +1,36 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block main %}
+<main>
+  <!-- Hero Section -->
+  <section class="hero container" id="top">
+    <span class="eyebrow"><span class="dot" aria-hidden="true"></span> Contact</span>
+    <h1>Get in Touch With Us</h1>
+    <p class="lead">
+      We’d love to hear from you! Whether you have a question, suggestion, or want to collaborate, drop us a message.
+    </p>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="container cta" id="contact-form">
+    <div class="panel">
+      <h2>Contact Form</h2>
+      <form method="post" action="{% url 'contact_submit' %}" style="display:flex; flex-direction:column; gap:12px;">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+        <input type="email" name="email" placeholder="Your Email" required style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+        <textarea name="message" rows="6" placeholder="Your Message" required style="padding:10px; border-radius:8px; border:1px solid #ccc;"></textarea>
+        <button type="submit" class="btn primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Optional Contact Info -->
+  <section class="container" style="text-align:center; margin-top:40px;">
+    <p>Email: <a href="mailto:hello@example.com">hello@example.com</a></p>
+    <p>Phone: +234 123 456 7890</p>
+    <p>Address: Lagos, Nigeria</p>
+  </section>
+</main>
+{% endblock main %}

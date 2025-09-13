@@ -1,0 +1,69 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block main %}
+<main style="padding:60px 20px;">
+
+  <!-- Hero Section -->
+  <section class="hero" style="text-align:center; margin-bottom:60px;">
+    <span class="eyebrow" style="display:block; font-weight:600; color:#555; margin-bottom:10px;">Contact</span>
+    <h1 style="font-size:2.8rem; color:#222; margin-bottom:15px;">Let's Get in Touch</h1>
+    <p style="font-size:1.1rem; color:#555; max-width:600px; margin:0 auto;">
+      Have a question, suggestion, or want to collaborate? Fill out the form or reach us directly below.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-container" style="display:flex; gap:40px; max-width:1000px; margin:0 auto; flex-wrap:wrap;">
+
+    <!-- Contact Form -->
+    <div class="contact-form-panel" style="flex:1 1 400px; background:#fff; padding:30px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
+      <h2 style="margin-bottom:20px; color:#222; text-align:center;">Send a Message</h2>
+      <form method="post" action="{% url 'contactpage' %}" style="display:flex; flex-direction:column; gap:15px;">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit" style="padding:12px; border:none; border-radius:8px; background:#007bff; color:#fff; font-weight:600; cursor:pointer; transition:0.3s;">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info-panel" style="flex:1 1 300px; display:flex; flex-direction:column; justify-content:center; gap:15px; background:#f1f5f9; padding:30px; border-radius:12px;">
+      <h2 style="color:#222; margin-bottom:15px; text-align:center;">Contact Info</h2>
+      <p style="font-size:1rem;"><strong>Email:</strong> <a href="mailto:hello@example.com" style="color:#007bff;">hello@example.com</a></p>
+      <p style="font-size:1rem;"><strong>Phone:</strong> +234 123 456 7890</p>
+      <p style="font-size:1rem;"><strong>Address:</strong> Lagos, Nigeria</p>
+    </div>
+
+  </section>
+</main>
+
+<style>
+  input, textarea {
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    font-size:1rem;
+    outline:none;
+    transition:0.3s;
+    width:100%;
+    box-sizing:border-box;
+  }
+
+  input:focus, textarea:focus {
+    border-color:#007bff;
+    box-shadow:0 0 5px rgba(0,123,255,0.3);
+  }
+
+  button:hover {
+    background:#0056b3;
+  }
+
+  @media (max-width:768px) {
+    .contact-container {
+      flex-direction:column;
+    }
+  }
+</style>
+{% endblock main %}

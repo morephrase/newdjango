@@ -1,0 +1,78 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block title %}Home | My Website{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="content">
+    <div class="title">UI/UX Designer</div>
+    <div class="header">Hello, my name is Okoye Bethel</div>
+    <div class="info">
+      I am a passionate designer with a focus on creating beautiful,
+      user-friendly digital experiences. With a deep interest in both
+      functionality and aesthetics, I strive to design interfaces that delight
+      and engage.
+    </div>
+    <div class="buttons">
+      <a href="#projects" class="btn btn-project">Projects</a>
+      <a href="https://linkedin.com" target="_blank" class="btn btn-linkedin">LinkedIn</a>
+    </div>
+  </div>
+  <div class="image-container">
+    <img src="{% static 'main/images/image.png' %}" alt="Okoye Bethel" />
+  </div>
+</div>
+
+<section class="projects-section" id="projects">
+  <div class="projects-header">
+    <h2>PROJECTS</h2>
+    <div class="underline"></div>
+  </div>
+
+  <!-- First Box -->
+  <div class="project-box">
+    <div class="project-text">
+      <h3>Relaxation & Yoga</h3>
+      <p>
+        Discover ways to relax and rejuvenate your body and mind with guided
+        yoga and meditation practices.
+      </p>
+      <a href="#" class="project-link">Visit Project</a>
+    </div>
+    <div class="project-image">
+      <img src="{% static 'main/images/yoga.png' %}" alt="Yoga Project" />
+    </div>
+  </div>
+
+  <!-- Second Box -->
+  <div class="project-box">
+    <div class="project-image">
+      <img src="{% static 'main/images/calendar.png' %}" alt="Calendar Project" />
+    </div>
+    <div class="project-text">
+      <h3>Calendar & Time</h3>
+      <p>
+        Manage your time efficiently with a beautiful calendar application
+        that helps you plan your day effortlessly.
+      </p>
+      <a href="#" class="project-link">Visit Project</a>
+    </div>
+  </div>
+
+  <!-- Third Box -->
+  <div class="project-box">
+    <div class="project-text">
+      <h3>Mobile Phone App</h3>
+      <p>
+        Explore a mobile-first experience with innovative designs for phones
+        that are user-friendly and intuitive.
+      </p>
+      <a href="#" class="project-link">Visit Project</a>
+    </div>
+    <div class="project-image">
+      <img src="{% static 'main/images/phone.png' %}" alt="Phone Project" />
+    </div>
+  </div>
+</section>
+{% endblock %}
