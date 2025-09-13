@@ -21,7 +21,7 @@
             <li><a href="{% url 'homepage' %}">Home</a></li>
             <li><a href="{% url 'aboutpage' %}">About</a></li>
             <li><a href="{% url 'contactpage' %}">Contact</a></li>
-            <li><a href="{% url 'Allprojects' %}">Projects</a></li>
+            <li><a href="{% url 'allprojects' %}">Projects</a></li>
 
             {% if user.is_superuser %}
                 <li><a href="{% url 'addpage' %}">Add</a></li>
